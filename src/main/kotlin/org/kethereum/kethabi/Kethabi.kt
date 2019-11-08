@@ -45,8 +45,11 @@ class Kethabi : Plugin<Project> {
     private fun processFile(it: File, sourcePath: String, outDir: File) {
         val path = it.absolutePath.substringAfter(sourcePath).removeSuffix(it.name).removeSuffix("/")
         val packageName = path.replace("/", ".")
-        println("generating ${it.nameWithoutExtension} in package $packageName")
         val abi = EthereumABI(it.readText(), Moshi.Builder().build())
-        abi.toKotlinCode(it.nameWithoutExtension, packageName).writeTo(outDir)
+        val makeInternal = it.nameWithoutExtension.startsWith("_")
+        val className = it.nameWithoutExtension.removePrefix("_")
+
+        println("generating $className in package $packageName")
+        abi.toKotlinCode(className, packageName, makeInternal).writeTo(outDir)
     }
 }
