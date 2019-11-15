@@ -4,8 +4,6 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
-    google()
     jcenter()
     maven("https://www.jitpack.io")
 }
