@@ -5,6 +5,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.AbstractCompile
 import org.kethereum.abi.EthereumABI
+import org.kethereum.abi_codegen.model.GeneratorSpec
 import org.kethereum.abi_codegen.toKotlinCode
 import java.io.File
 
@@ -50,6 +51,6 @@ class Kethabi : Plugin<Project> {
         val className = it.nameWithoutExtension.removePrefix("_")
 
         println("generating $className in package $packageName")
-        abi.toKotlinCode(className, packageName, makeInternal).writeTo(outDir)
+        abi.toKotlinCode(GeneratorSpec(className, packageName, makeInternal)).writeTo(outDir)
     }
 }

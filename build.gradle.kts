@@ -1,3 +1,5 @@
+val kethereum_version = "0.77.4"
+
 plugins {
     `kotlin-dsl`
     maven
@@ -13,6 +15,6 @@ dependencies {
     implementation(localGroovy())
     implementation("com.squareup:kotlinpoet:1.4.3")
     implementation("com.squareup.moshi:moshi:1.8.0")
-    implementation("com.github.komputing.kethereum:abi:0.77.0")
-    implementation("com.github.komputing.kethereum:abi_codegen:0.77.0")
+    implementation("com.github.komputing.kethereum:abi:$kethereum_version")
+    implementation("com.github.komputing.kethereum:abi_codegen:$kethereum_version")
 }
