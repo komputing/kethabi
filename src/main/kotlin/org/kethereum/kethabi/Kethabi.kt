@@ -1,6 +1,7 @@
 package org.kethereum.kethabi
 
 import com.squareup.moshi.Moshi
+import okio.Okio
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.AbstractCompile
@@ -51,6 +52,15 @@ class Kethabi : Plugin<Project> {
         val className = it.nameWithoutExtension.removePrefix("_")
 
         println("generating $className in package $packageName")
-        abi.toKotlinCode(GeneratorSpec(className, packageName, makeInternal)).writeTo(outDir)
+
+        val configFile = File(it.nameWithoutExtension + ".config")
+        val spec = if (!configFile.exists()) {
+            GeneratorSpec(className, packageName, makeInternal)
+        } else {
+            val adapter = Moshi.Builder().build().adapter(GeneratorSpec::class.java)
+            adapter.fromJson(Okio.buffer(Okio.source(configFile)))
+        } ?: throw IllegalArgumentException("Could not generator config config from file $configFile")
+
+        abi.toKotlinCode(spec).writeTo(outDir)
     }
 }
