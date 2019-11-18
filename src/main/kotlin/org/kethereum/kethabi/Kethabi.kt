@@ -51,15 +51,16 @@ class Kethabi : Plugin<Project> {
         val makeInternal = it.nameWithoutExtension.startsWith("_")
         val className = it.nameWithoutExtension.removePrefix("_")
 
-        println("generating $className in package $packageName")
-
         val configFile = File(it.nameWithoutExtension + ".config")
         val spec = if (!configFile.exists()) {
             GeneratorSpec(className, packageName, makeInternal)
         } else {
+            println("found config ${configFile.name}")
             val adapter = Moshi.Builder().build().adapter(GeneratorSpec::class.java)
             adapter.fromJson(Okio.buffer(Okio.source(configFile)))
-        } ?: throw IllegalArgumentException("Could not generator config config from file $configFile")
+        } ?: throw IllegalArgumentException("Could not generator config config from file ${configFile.name}")
+
+        println("generating $className in package $packageName with generatorSpec:$spec")
 
         abi.toKotlinCode(spec).writeTo(outDir)
     }
