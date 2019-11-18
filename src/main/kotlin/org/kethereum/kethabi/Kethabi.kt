@@ -36,7 +36,7 @@ class Kethabi : Plugin<Project> {
     }
 
     private fun processDirectory(target: File, sourcePath: String, outDir: File) {
-        target.listFiles()?.forEach {
+        target.listFiles()?.filter { it.extension == "abi" }?.forEach {
             if (it.isDirectory)
                 processDirectory(it, sourcePath, outDir)
             else
