@@ -13,7 +13,7 @@ repositories {
 dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
-    implementation("com.squareup:kotlinpoet:1.4.3")
+    implementation("com.squareup:kotlinpoet:1.4.4")
     implementation("com.squareup.moshi:moshi:1.8.0")
     implementation("com.github.komputing.kethereum:abi:$kethereum_version")
     implementation("com.github.komputing.kethereum:abi_codegen:$kethereum_version")
