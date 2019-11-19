@@ -36,15 +36,19 @@ class Kethabi : Plugin<Project> {
     }
 
     private fun processDirectory(target: File, sourcePath: String, outDir: File) {
-        target.listFiles()?.filter { it.extension == "abi" }?.forEach {
-            if (it.isDirectory)
-                processDirectory(it, sourcePath, outDir)
-            else
-                processFile(it, sourcePath, outDir)
+        target.listFiles()?.forEach {
+            when {
+                it.isDirectory -> processDirectory(it, sourcePath, outDir)
+                it.extension.toLowerCase() == "abi" -> processABIFile(it, sourcePath, outDir)
+                it.extension.toLowerCase() == "config" -> if (!File(it.nameWithoutExtension + ".abi").exists()) {
+                    println ("!!Warning!! found a config file (${it.path} in the ABI path that does not have the corresponding abi file")
+                }
+                else -> println ("!!Warning!! found a file (${it.path} in the ABI path that is neither an ABI file nor a config")
+            }
         }
     }
 
-    private fun processFile(it: File, sourcePath: String, outDir: File) {
+    private fun processABIFile(it: File, sourcePath: String, outDir: File) {
         val path = it.absolutePath.substringAfter(sourcePath).removeSuffix(it.name).removeSuffix("/")
         val packageName = path.replace("/", ".")
         val abi = EthereumABI(it.readText(), Moshi.Builder().build())
