@@ -1,4 +1,4 @@
-val kethereum_version = "0.78.1"
+val kethereum_version = "0.79.2"
 
 plugins {
     `kotlin-dsl`
