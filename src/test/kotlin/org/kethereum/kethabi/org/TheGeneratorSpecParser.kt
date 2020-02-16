@@ -4,7 +4,8 @@ import okio.Okio
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.kethereum.kethabi.generatorSpecAdapter
-class TheGeneratorSpec {
+
+class TheGeneratorSpecParser {
     @Test
     fun canParseSimpleSpec() {
 
@@ -12,4 +13,5 @@ class TheGeneratorSpec {
         val parsed = generatorSpecAdapter.fromJson(Okio.buffer(jsonSource))
         assertThat(parsed?.classPrefix).isEqualTo("prefix")
     }
+
 }
