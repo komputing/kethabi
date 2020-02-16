@@ -1,6 +1,5 @@
 package org.kethereum.kethabi
 
-import com.squareup.moshi.Moshi
 import okio.Okio
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -66,7 +65,7 @@ class Kethabi : Plugin<Project> {
     private fun processABIFile(it: File, sourcePath: String, outDir: File) {
         val path = it.absolutePath.substringAfter(sourcePath).removeSuffix(it.name).removeSuffix("/")
         val packageName = path.replace("/", ".")
-        val abi = EthereumABI(it.readText(), Moshi.Builder().build())
+        val abi = EthereumABI(it.readText(), moshi)
         val makeInternal = it.nameWithoutExtension.startsWith("_")
         val className = it.nameWithoutExtension.removePrefix("_")
 
@@ -75,8 +74,8 @@ class Kethabi : Plugin<Project> {
             GeneratorSpec(className, packageName, makeInternal)
         } else {
             println("found config ${configFile.name}")
-            val adapter = Moshi.Builder().build().adapter(GeneratorSpec::class.java)
-            adapter.fromJson(Okio.buffer(Okio.source(configFile)))
+
+            generatorSpecAdapter.fromJson(Okio.buffer(Okio.source(configFile)))
         } ?: throw IllegalArgumentException("Could not generator config config from file ${configFile.name}")
 
         println("generating $className in package $packageName with generatorSpec:$spec")
@@ -90,9 +89,9 @@ class Kethabi : Plugin<Project> {
     }
 
     private fun Project.addDependencies() {
-        project.dependencies.add("implementation", "com.github.komputing.kethereum:rpc:0.79.4")
-        project.dependencies.add("implementation", "com.github.komputing.kethereum:model:0.79.4")
-        project.dependencies.add("implementation", "com.github.komputing.kethereum:types:0.79.4")
+        project.dependencies.add("implementation", "com.github.komputing.kethereum:rpc:$kethereum_version")
+        project.dependencies.add("implementation", "com.github.komputing.kethereum:model:$kethereum_version")
+        project.dependencies.add("implementation", "com.github.komputing.kethereum:types:$kethereum_version")
         project.dependencies.add("implementation", "com.github.komputing:khex:1.0.0-RC6")
     }
 }
