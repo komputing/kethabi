@@ -1,5 +1,21 @@
 val kethereum_version = "0.79.4"
 
+apply {
+    from("https://raw.githubusercontent.com/ligi/gradle-common/master/versions_plugin_stable_only.gradle")
+}
+
+buildscript {
+    repositories {
+        maven("https://jitpack.io")
+    }
+
+    dependencies {
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.27.0")
+    }
+}
+
+
+
 plugins {
     `kotlin-dsl`
     maven
