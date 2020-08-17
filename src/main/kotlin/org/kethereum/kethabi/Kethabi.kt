@@ -84,8 +84,7 @@ class Kethabi : Plugin<Project> {
     }
 
     private fun Project.addJitpackRepository() = repositories.maven {
-        url = URI("https://jitpack.io")
-        name = "jitpack"
+        uri(URI("https://jitpack.io"))
     }
 
     private fun Project.addDependencies() {

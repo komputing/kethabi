@@ -15,13 +15,13 @@ buildscript {
     }
 }
 
-plugins {
-    `kotlin-dsl`
-    maven
-}
 repositories {
     jcenter()
     maven("https://www.jitpack.io")
+}
+plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.4.0"
+    maven
 }
 
 tasks.withType<Test> {
