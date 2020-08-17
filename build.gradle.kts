@@ -33,7 +33,7 @@ dependencies {
     implementation(localGroovy())
     implementation("com.squareup:kotlinpoet:1.6.0")
 
-    implementation("com.squareup.moshi:moshi-kotlin:1.9.2")
+    implementation("com.squareup.moshi:moshi-kotlin:1.9.3")
 
     implementation("com.github.komputing.kethereum:abi:$kethereumVersion")
     implementation("com.github.komputing.kethereum:abi_codegen:$kethereumVersion")
