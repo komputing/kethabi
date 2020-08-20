@@ -1,8 +1,10 @@
 package org.kethereum.kethabi
 
 import okio.Okio
+import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.compile.AbstractCompile
 import org.kethereum.abi.EthereumABI
@@ -84,7 +86,8 @@ class Kethabi : Plugin<Project> {
     }
 
     private fun Project.addJitpackRepository() = repositories.maven {
-        uri(URI("https://jitpack.io"))
+        it.name = "jitpack"
+        it.url = URI("https://maven.aliyun.com/repository/central")
     }
 
     private fun Project.addDependencies() {
