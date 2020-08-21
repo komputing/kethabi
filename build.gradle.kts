@@ -1,5 +1,5 @@
 // https://github.com/komputing/kethabi/issues/6
-val kethereumVersion = "0.82.6"
+val kethereumVersion = "0.83.0"
 
 apply {
     from("https://raw.githubusercontent.com/ligi/gradle-common/master/versions_plugin_stable_only.gradle")
