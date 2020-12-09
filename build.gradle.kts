@@ -20,7 +20,7 @@ repositories {
     maven("https://www.jitpack.io")
 }
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.0"
+    id("org.jetbrains.kotlin.jvm") version "1.4.21"
     maven
 }
 
