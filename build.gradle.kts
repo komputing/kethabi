@@ -38,7 +38,7 @@ dependencies {
     implementation("com.github.komputing.kethereum:abi:$kethereumVersion")
     implementation("com.github.komputing.kethereum:abi_codegen:$kethereumVersion")
 
-    testImplementation("org.assertj:assertj-core:3.18.1")
+    testImplementation("org.assertj:assertj-core:3.19.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
 
