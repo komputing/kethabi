@@ -21,11 +21,19 @@ repositories {
 }
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.5.10"
-    maven
+    id("maven-publish")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+configure<PublishingExtension> {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
 
 dependencies {
