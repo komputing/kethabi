@@ -1,10 +1,9 @@
 package org.kethereum.kethabi
 
-import okio.Okio
-import org.gradle.api.Action
+import okio.buffer
+import okio.source
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.compile.AbstractCompile
 import org.kethereum.abi.EthereumABI
@@ -77,7 +76,7 @@ class Kethabi : Plugin<Project> {
         } else {
             println("found config ${configFile.name}")
 
-            generatorSpecAdapter.fromJson(Okio.buffer(Okio.source(configFile)))
+            generatorSpecAdapter.fromJson(configFile.source().buffer())
         } ?: throw IllegalArgumentException("Could not generator config config from file ${configFile.name}")
 
         println("generating $className in package $packageName with generatorSpec:$spec")
