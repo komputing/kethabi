@@ -31,7 +31,7 @@ tasks.withType<Test> {
 dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
-    implementation("com.squareup:kotlinpoet:1.7.2")
+    implementation("com.squareup:kotlinpoet:1.8.0")
 
     implementation("com.squareup.moshi:moshi-kotlin:1.11.0")
 
