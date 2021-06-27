@@ -9,4 +9,4 @@ internal val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 internal val generatorSpecAdapter = moshi.adapter(GeneratorSpec::class.java)
 
 // https://github.com/komputing/kethabi/issues/6
-internal const val kethereum_version = "0.83.0"
+internal const val kethereum_version = "0.84.2"
