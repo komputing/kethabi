@@ -93,6 +93,6 @@ class Kethabi : Plugin<Project> {
         project.dependencies.add("implementation", "com.github.komputing.kethereum:rpc:$kethereum_version")
         project.dependencies.add("implementation", "com.github.komputing.kethereum:model:$kethereum_version")
         project.dependencies.add("implementation", "com.github.komputing.kethereum:types:$kethereum_version")
-        project.dependencies.add("implementation", "com.github.komputing:khex:1.0.0-RC6")
+        project.dependencies.add("implementation", "com.github.komputing:khex:1.1.2")
     }
 }
