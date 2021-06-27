@@ -16,7 +16,7 @@ buildscript {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
     maven("https://www.jitpack.io")
 }
 plugins {
