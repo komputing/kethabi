@@ -1,5 +1,5 @@
 // https://github.com/komputing/kethabi/issues/6
-val kethereumVersion = "0.84.2"
+val kethereumVersion = "0.86.0"
 
 apply {
     from("https://raw.githubusercontent.com/ligi/gradle-common/master/versions_plugin_stable_only.gradle")
@@ -11,7 +11,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.39.0")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.51.0")
     }
 }
 
@@ -20,7 +20,7 @@ repositories {
     maven("https://www.jitpack.io")
 }
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.5.20"
+    id("org.jetbrains.kotlin.jvm") version "2.0.21"
     id("maven-publish")
 }
 
@@ -39,7 +39,7 @@ configure<PublishingExtension> {
 dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
-    implementation("com.squareup:kotlinpoet:1.9.0")
+    implementation("com.squareup:kotlinpoet:2.0.0")
 
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
 
@@ -47,8 +47,8 @@ dependencies {
     implementation("com.github.komputing.kethereum:abi_codegen:$kethereumVersion")
 
     testImplementation("org.assertj:assertj-core:3.20.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.4")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("io.mockk:mockk:1.11.0")
