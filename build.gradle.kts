@@ -39,7 +39,7 @@ configure<PublishingExtension> {
 dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
-    implementation("com.squareup:kotlinpoet:2.0.0")
+    implementation("com.squareup:kotlinpoet:2.1.0")
 
     implementation("com.squareup.moshi:moshi-kotlin:1.15.2")
 
